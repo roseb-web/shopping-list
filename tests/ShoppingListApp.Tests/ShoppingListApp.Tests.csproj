@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ShoppingListApp.Core\ShoppingListApp.Core.csproj" />
-    <ProjectReference Include="..\..\src\ShoppingListApp.Data\ShoppingListApp.Data.csproj" />
-    <ProjectReference Include="..\..\src\ShoppingListApp.Api\ShoppingListApp.Api.csproj" />
+    <ProjectReference Include="..\..\src\ShoppingListApp.Core\Core.csproj" />
+    <ProjectReference Include="..\..\src\Data\ShoppingListApp.Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
