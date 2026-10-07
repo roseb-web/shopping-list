@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ShoppingListApp.Core/ShoppingListApp.Core.csproj" />
+    <Project Path="src/ShoppingListApp.Data/ShoppingListApp.Data.csproj" />
+  </Folder>
+</Solution>
