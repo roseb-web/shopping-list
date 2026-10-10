@@ -13,6 +13,17 @@ public class ServiceResult
 {
     public ServiceError Error { get; set; } = ServiceError.None;
     public string ErrorMessage { get; set; } = string.Empty;
+
+    public bool IsSuccess => Error == ServiceError.None;
+
+    public static ServiceResult Ok()
+    {
+        return new ServiceResult();
+    }
+    public static ServiceResult Fail(ServiceError error, string errorMessage)
+    {
+        return new ServiceResult { Error = error, ErrorMessage = errorMessage };
+    }
 }
 
 public class ServiceResult<T> : ServiceResult
@@ -23,8 +34,7 @@ public class ServiceResult<T> : ServiceResult
     {
         return new ServiceResult<T> { Value = value };
     }
-
-    public static ServiceResult<T> Fail(ServiceError error, string errorMessage)
+    public static new ServiceResult<T> Fail(ServiceError error, string errorMessage)
     {
         return new ServiceResult<T> { Error = error, ErrorMessage = errorMessage };
     }
