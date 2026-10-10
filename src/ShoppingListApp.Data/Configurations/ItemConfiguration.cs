@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShoppingListApp.Core.Entities;
+using ShoppingListApp.Core.Validation;
 
 namespace Data.Configurations;
 
@@ -10,7 +11,7 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
         builder.Property(i => i.Name)
             .IsRequired()
-            .HasMaxLength(100)
+            .HasMaxLength(ItemRules.NameMaxLength)
             .UseCollation("NOCASE"); // Milk and milk are considered the same item
 
         builder.Property(i => i.Price)
