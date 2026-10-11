@@ -18,6 +18,7 @@ public static class ItemRules
 
     public static string ValidateSpendingLimit(decimal? spendingLimit)
     {
-        return spendingLimit >= 0 && spendingLimit <= MaxSpendingLimit ? "" : $"Spending limit must be between 0 and {MaxSpendingLimit}.";
+        // No limit (null) is allowed, so the user can remove their spending limit
+        return spendingLimit is null || (spendingLimit >= 0 && spendingLimit <= MaxSpendingLimit) ? "" : $"Spending limit must be between 0 and {MaxSpendingLimit}.";
     }
 }

@@ -6,6 +6,7 @@ public enum ServiceError
     None,
     NotFound,
     ValidationError,
+    Conflict,
     Error
 }
 

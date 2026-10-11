@@ -16,4 +16,12 @@ public static class DataServiceExtensions
 
         return services;
     }
+
+    public static async Task EnsureShoppingListDatabaseAsync(this IServiceProvider services)
+    {
+        using var scope = services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<ShoppingListDbContext>();
+
+        await db.Database.EnsureCreatedAsync();
+    }
 }
