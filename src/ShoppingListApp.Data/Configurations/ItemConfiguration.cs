@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShoppingListApp.Core.Entities;
 using ShoppingListApp.Core.Validation;
 
-namespace Data.Configurations;
+namespace ShoppingListApp.Data.Configurations;
 
 public class ItemConfiguration : IEntityTypeConfiguration<Item>
 {
