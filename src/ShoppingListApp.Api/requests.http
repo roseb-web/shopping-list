@@ -1,0 +1,57 @@
+@api = http://localhost:5080/api/list
+
+### 1. Get the list
+GET {{api}}
+
+### 2. Add Milk
+# @name addMilk
+POST {{api}}/items
+Content-Type: application/json
+
+{ "name": "Milk", "price": 1.20 }
+
+### 3. Add Bread
+# @name addBread
+POST {{api}}/items
+Content-Type: application/json
+
+{ "name": "Bread", "price": 0.80 }
+
+### 4. Add a duplicate (expect 409)
+POST {{api}}/items
+Content-Type: application/json
+
+{ "name": "milk", "price": 1.20 }
+
+### 5. Add with a bad price (expect 400)
+POST {{api}}/items
+Content-Type: application/json
+
+{ "name": "Eggs", "price": -1 }
+
+### 6. Tick off Milk
+PATCH {{api}}/items/{{addMilk.response.body.$.id}}/bought
+Content-Type: application/json
+
+{ "isBought": true }
+
+### 7. Put Bread before Milk
+PUT {{api}}/items/order
+Content-Type: application/json
+
+{ "itemIds": [{{addBread.response.body.$.id}}, {{addMilk.response.body.$.id}}] }
+
+### 8. Set a limit lower than the total (expect isOverBudget: true)
+PUT {{api}}/limit
+Content-Type: application/json
+
+{ "spendingLimit": 1.00 }
+
+### 9. Remove the limit
+PUT {{api}}/limit
+Content-Type: application/json
+
+{ "spendingLimit": null }
+
+### 10. Remove Bread (expect 204)
+DELETE {{api}}/items/{{addBread.response.body.$.id}}

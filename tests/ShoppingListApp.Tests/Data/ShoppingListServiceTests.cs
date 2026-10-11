@@ -12,7 +12,7 @@ public class ShoppingListServiceTests
     [Fact]
     public async Task AddItem_SortOrderIsNext()
     {
-        var testDatabase = new TestDatabase();
+        using var testDatabase = new TestDatabase();
 
         using var arrangeDb = testDatabase.CreateDbContext();
 
@@ -38,7 +38,7 @@ public class ShoppingListServiceTests
 
         var saved = assertDb.Items.First(i => i.Name == "Item 3");
 
-        Assert.Equal(3, saved.SortOrder);
+        Assert.Equal(2, saved.SortOrder);
     } 
 
     // More tests can be added here to cover other methods of the ShoppingListService

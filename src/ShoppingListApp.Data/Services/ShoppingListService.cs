@@ -29,10 +29,10 @@ public class ShoppingListService : IShoppingListService
             return ServiceResult<ShoppingListDto>.Fail(ServiceError.NotFound, "Shopping list not found.");
         }
 
-        // Calculate budget summary
+        // Recalculate budget summary 
         var summary = BudgetCalculator.GetSummary(shoppingList.Items, shoppingList.SpendingLimit);
 
-        // Map to DTO
+        // Map to DTO for safe return
         var dto = new ShoppingListDto(
             shoppingList.Name,
             shoppingList.Items.Select(i => new ItemDto(i.Id, i.Name, i.Price, i.IsBought)).ToList(),
@@ -74,7 +74,7 @@ public class ShoppingListService : IShoppingListService
         // Check for duplicate item names
         if (shoppingList.Items.Any(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
         {
-            return ServiceResult<ItemDto>.Fail(ServiceError.ValidationError, "An item with the same name already exists in the shopping list.");
+            return ServiceResult<ItemDto>.Fail(ServiceError.Conflict, "An item with the same name already exists in the shopping list.");
         }
 
         // Set the sort order for the new item
@@ -164,9 +164,10 @@ public class ShoppingListService : IShoppingListService
             return ServiceResult.Fail(ServiceError.ValidationError, "The number of provided item IDs does not match the number of items in the shopping list.");
         }
 
-        if (!itemIds.All(id => existingItemIds.Contains(id)))
+        // SetEquals also catches repeated IDs, e.g. [1, 1] for a list with items 1 and 2
+        if (!existingItemIds.SetEquals(itemIds))
         {
-            return ServiceResult.Fail(ServiceError.ValidationError, "One or more item IDs do not exist in the shopping list.");
+            return ServiceResult.Fail(ServiceError.ValidationError, "The item IDs must include every item in the shopping list exactly once.");
         }
 
         // Update sort order based on the new order
