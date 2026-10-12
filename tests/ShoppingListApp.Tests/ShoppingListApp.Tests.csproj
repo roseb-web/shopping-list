@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\ShoppingListApp.Core\ShoppingListApp.Core.csproj" />
     <ProjectReference Include="..\..\src\ShoppingListApp.Data\ShoppingListApp.Data.csproj" />
+    <ProjectReference Include="..\..\src\ShoppingListApp.Data\ShoppingListApp.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

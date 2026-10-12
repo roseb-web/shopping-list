@@ -4,4 +4,7 @@
     <Project Path="src/ShoppingListApp.Core/ShoppingListApp.Core.csproj" />
     <Project Path="src/ShoppingListApp.Data/ShoppingListApp.Data.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ShoppingListApp.Tests/ShoppingListApp.Tests.csproj" />
+  </Folder>
 </Solution>
