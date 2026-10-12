@@ -481,11 +481,11 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-  # Local database
-  *.db
-  *.db-shm
-  *.db-wal
+# Local database
+*.db
+*.db-shm
+*.db-wal
 
-  # Vue / Node
-  node_modules/
-  src/ShoppingListApp.Api/wwwroot/
+# Vue / Node
+node_modules/
+src/ShoppingListApp.Api/wwwroot/

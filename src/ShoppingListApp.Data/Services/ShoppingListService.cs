@@ -37,9 +37,7 @@ public class ShoppingListService : IShoppingListService
             shoppingList.Name,
             shoppingList.Items.Select(i => new ItemDto(i.Id, i.Name, i.Price, i.IsBought)).ToList(),
             shoppingList.SpendingLimit,
-            summary.Total,
-            summary.Remaining,
-            summary.IsOverBudget
+            summary
         );
 
         return ServiceResult<ShoppingListDto>.Ok(dto);
